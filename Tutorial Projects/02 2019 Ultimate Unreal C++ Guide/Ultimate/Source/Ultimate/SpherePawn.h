@@ -21,6 +21,12 @@ protected:
 
 	void MoveForward(float Amount);
 	void MoveRight(float Amount);
+	void Turn(float Amount);
+	void LookUp(float Amount);
+	void Shoot();
+    
+    UPROPERTY(EditAnywhere, Category = "Shooting")
+	TSubclassOf<class ABullet> BulletClass;
 
     class UFloatingPawnMovement* FloatingPawnMovement;
 
@@ -29,6 +35,9 @@ protected:
 
     UPROPERTY(EditAnywhere, Category = "Components")
     class UCameraComponent* Camera;
+
+    UPROPERTY(EditAnywhere, Category = "Components")
+    class USpringArmComponent* CameraArm;
 
 public:	
 	// Called every frame
