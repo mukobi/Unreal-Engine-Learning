@@ -8,6 +8,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Bullet.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AUnrealCppInOneHourCharacter
@@ -74,8 +75,24 @@ void AUnrealCppInOneHourCharacter::SetupPlayerInputComponent(class UInputCompone
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AUnrealCppInOneHourCharacter::OnResetVR);
+
+	// Shoot
+	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AUnrealCppInOneHourCharacter::Shoot);
 }
 
+
+void AUnrealCppInOneHourCharacter::Shoot()
+{
+	FTransform spawnTransform = GetActorTransform();
+
+	spawnTransform.SetLocation(FollowCamera->GetComponentRotation().Vector() * 200.f + GetActorLocation());
+
+	spawnTransform.TransformPosition(FVector(0, 0, 100.f));
+	
+	FActorSpawnParameters spawnParams;
+
+	GetWorld()->SpawnActor<ABullet>(BulletBP, spawnTransform, spawnParams);
+}
 
 void AUnrealCppInOneHourCharacter::OnResetVR()
 {
