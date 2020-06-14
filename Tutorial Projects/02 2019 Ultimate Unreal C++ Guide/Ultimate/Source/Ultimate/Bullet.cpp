@@ -44,6 +44,7 @@ void ABullet::OnBulletHit(AActor* SelfActor, AActor* OtherActor, FVector NormalI
 		{
 			GM->OnTargetHit();
 		}
+		target->Destroy();
 	}
 	Destroy();
 }

@@ -22,8 +22,13 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UStaticMeshComponent* TargetMesh;
 
+	FVector MoveDirection;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	FVector MoveScale;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+private:
 };

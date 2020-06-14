@@ -23,13 +23,13 @@ void AUltimateGameMode::OnTargetHit()
 	{
 		gameState->Points++;
 
-		if (gameState->Points > PointsToWin)
+		if (gameState->Points >= PointsToWin)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("You won!"));
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("You wont in %f second!"), GetWorld()->GetTimeSeconds()));
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("You have %d points."), gameState->Points);
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("You have %d points."), gameState->Points));
 		}
 	}
 }
